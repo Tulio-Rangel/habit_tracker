@@ -15,7 +15,7 @@ class _HomePageState extends State<HomePage> {
     ['Exercise', false, 0, 15],
     ['Study', false, 0, 60],
     ['Read', false, 0, 30],
-    ['Code', false, 0, 40]
+    ['Code', false, 0, 40],
   ];
 
   void habitStarted(int index) {}
