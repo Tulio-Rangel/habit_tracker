@@ -61,7 +61,7 @@ class HabitTile extends StatelessWidget {
                 ),
               ],
             ),
-            const Icon(Icons.fitness_center)
+            const Icon(Icons.settings)
           ],
         ),
       ),
