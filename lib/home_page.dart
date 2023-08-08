@@ -17,6 +17,11 @@ class _HomePageState extends State<HomePage> {
     ['Read', false, 0, 30],
     ['Code', false, 0, 40]
   ];
+
+  void habitStarted(int index) {}
+
+  void settingsOpened(int index) {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,42 +31,21 @@ class _HomePageState extends State<HomePage> {
         title: Text('Habit Porogress'),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          HabitTile(
-            habitName: habitList[0][0],
-            onTap: () {},
-            settingsTapped: () {},
-            timeSpent: habitList[0][2],
-            timeGoal: habitList[0][3],
-            habitStarted: habitList[0][1],
-          ),
-          HabitTile(
-            habitName: habitList[1][0],
-            onTap: () {},
-            settingsTapped: () {},
-            timeSpent: habitList[1][2],
-            timeGoal: habitList[1][3],
-            habitStarted: habitList[1][1],
-          ),
-          HabitTile(
-            habitName: habitList[2][0],
-            onTap: () {},
-            settingsTapped: () {},
-            timeSpent: habitList[2][2],
-            timeGoal: habitList[2][3],
-            habitStarted: habitList[2][1],
-          ),
-          HabitTile(
-            habitName: habitList[3][0],
-            onTap: () {},
-            settingsTapped: () {},
-            timeSpent: habitList[3][2],
-            timeGoal: habitList[3][3],
-            habitStarted: habitList[3][1],
-          ),
-        ],
-      ),
+      body: ListView.builder(
+          itemCount: habitList.length,
+          itemBuilder: ((context, index) {
+            return HabitTile(
+                habitName: habitList[index][0],
+                onTap: () {
+                  habitStarted(index);
+                },
+                settingsTapped: () {
+                  settingsOpened(index);
+                },
+                timeSpent: habitList[index][2],
+                timeGoal: habitList[index][3],
+                habitStarted: habitList[index][1]);
+          })),
     );
   }
 }
