@@ -23,7 +23,18 @@ class HabitTile extends StatelessWidget {
           children: [
             Row(
               children: [
-                CircularPercentIndicator(radius: 40),
+                Container(
+                  height: 60,
+                  width: 60,
+                  child: Stack(
+                    children: [
+                      // Progress Cirlce
+                      CircularPercentIndicator(radius: 60),
+                      // Play-pause buttom
+                      Center(child: Icon(Icons.play_arrow)),
+                    ],
+                  ),
+                ),
                 const SizedBox(
                   width: 20,
                 ),
