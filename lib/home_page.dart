@@ -20,10 +20,38 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Column(
         children: [
-          HabitTile(habitName: 'Excersise'),
-          HabitTile(habitName: 'Study'),
-          HabitTile(habitName: 'Play Music'),
-          HabitTile(habitName: 'Code'),
+          HabitTile(
+            habitName: 'Excersise',
+            onTap: () {},
+            settingsTapped: () {},
+            timeSpent: 4,
+            timeGoal: 12,
+            habitStarted: true,
+          ),
+          HabitTile(
+            habitName: 'Study',
+            onTap: () {},
+            settingsTapped: () {},
+            timeSpent: 4,
+            timeGoal: 12,
+            habitStarted: true,
+          ),
+          HabitTile(
+            habitName: 'Play Music',
+            onTap: () {},
+            settingsTapped: () {},
+            timeSpent: 4,
+            timeGoal: 12,
+            habitStarted: true,
+          ),
+          HabitTile(
+            habitName: 'Code',
+            onTap: () {},
+            settingsTapped: () {},
+            timeSpent: 4,
+            timeGoal: 12,
+            habitStarted: true,
+          ),
         ],
       ),
     );

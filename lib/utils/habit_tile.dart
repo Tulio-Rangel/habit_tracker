@@ -5,8 +5,20 @@ import 'package:percent_indicator/percent_indicator.dart';
 
 class HabitTile extends StatelessWidget {
   final String habitName;
+  final VoidCallback onTap;
+  final VoidCallback settingsTapped;
+  final int timeSpent;
+  final int timeGoal;
+  final bool habitStarted;
 
-  const HabitTile({super.key, required this.habitName});
+  const HabitTile(
+      {super.key,
+      required this.habitName,
+      required this.onTap,
+      required this.settingsTapped,
+      required this.timeSpent,
+      required this.timeGoal,
+      required this.habitStarted});
 
   @override
   Widget build(BuildContext context) {
@@ -23,16 +35,21 @@ class HabitTile extends StatelessWidget {
           children: [
             Row(
               children: [
-                Container(
-                  height: 60,
-                  width: 60,
-                  child: Stack(
-                    children: [
-                      // Progress Cirlce
-                      CircularPercentIndicator(radius: 60),
-                      // Play-pause buttom
-                      Center(child: Icon(Icons.play_arrow)),
-                    ],
+                GestureDetector(
+                  onTap: onTap,
+                  child: SizedBox(
+                    height: 60,
+                    width: 60,
+                    child: Stack(
+                      children: [
+                        // Progress Cirlce
+                        CircularPercentIndicator(radius: 60),
+                        // Play-pause buttom
+                        Center(
+                            child: Icon(
+                                habitStarted ? Icons.pause : Icons.play_arrow)),
+                      ],
+                    ),
                   ),
                 ),
                 const SizedBox(
@@ -53,15 +70,15 @@ class HabitTile extends StatelessWidget {
                     ),
 
                     // Progress
-                    const Text(
-                      '2:00 / 10 = 20%',
+                    Text(
+                      '$timeSpent / $timeGoal',
                       style: TextStyle(color: Colors.grey),
                     )
                   ],
                 ),
               ],
             ),
-            const Icon(Icons.settings)
+            GestureDetector(onTap: settingsTapped, child: Icon(Icons.settings))
           ],
         ),
       ),
