@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:habit_tracker/utils/habit_tile.dart';
 
@@ -18,9 +20,42 @@ class _HomePageState extends State<HomePage> {
     ['Code', false, 0, 40],
   ];
 
-  void habitStarted(int index) {}
+  void habitStarted(int index) {
+    // Note what the start time is
+    var startTime = DateTime.now();
 
-  void settingsOpened(int index) {}
+    // Habit started or stopped
+    setState(() {
+      habitList[index][1] = !habitList[index][1];
+    });
+
+    if (habitList[index][1]) {
+      Timer.periodic(Duration(seconds: 1), (timer) {
+        setState(() {
+          // Check when the user has stopped the timer
+          if (!habitList[index][1]) {
+            timer.cancel();
+          }
+
+          // Calculate the time elapsed by comparing current time and start time
+          var currentTime = DateTime.now();
+          habitList[index][2] = currentTime.second -
+              startTime.second +
+              60 * (currentTime.minute - startTime.minute) +
+              3600 * (currentTime.hour - startTime.hour);
+        });
+      });
+    }
+  }
+
+  void settingsOpened(int index) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+              title: Text('Settings for ' + habitList[index][0]));
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
