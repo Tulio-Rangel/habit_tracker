@@ -23,7 +23,7 @@ class HabitTile extends StatelessWidget {
   // Convert second into min:sec -> e.g. 62 seconsed = 1:02 min
   String formatToMinSec(int totalSeconds) {
     String secs = (totalSeconds % 60).toString();
-    String mins = (totalSeconds / 60).toStringAsFixed(1);
+    String mins = (totalSeconds / 60).toStringAsFixed(5);
 
     // If secs is a 1 digit number, place 0 infront of it
     if (secs.length == 1) {
@@ -36,6 +36,11 @@ class HabitTile extends StatelessWidget {
     }
 
     return '$mins:$secs';
+  }
+
+  // Calculate progress percemtage
+  double percentCompleted() {
+    return timeSpent / (timeGoal * 60);
   }
 
   @override
@@ -89,7 +94,7 @@ class HabitTile extends StatelessWidget {
 
                     // Progress
                     Text(
-                      '${formatToMinSec(timeSpent)} / $timeGoal',
+                      '${formatToMinSec(timeSpent)} / $timeGoal = ${(percentCompleted() * 100).toStringAsFixed(0)}%',
                       style: TextStyle(color: Colors.grey),
                     )
                   ],
