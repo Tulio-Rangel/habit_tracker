@@ -24,6 +24,9 @@ class _HomePageState extends State<HomePage> {
     // Note what the start time is
     var startTime = DateTime.now();
 
+    // Include the time already elapsed
+    int elapsedTime = habitList[index][2];
+
     // Habit started or stopped
     setState(() {
       habitList[index][1] = !habitList[index][1];
@@ -39,7 +42,8 @@ class _HomePageState extends State<HomePage> {
 
           // Calculate the time elapsed by comparing current time and start time
           var currentTime = DateTime.now();
-          habitList[index][2] = currentTime.second -
+          habitList[index][2] = elapsedTime +
+              currentTime.second -
               startTime.second +
               60 * (currentTime.minute - startTime.minute) +
               3600 * (currentTime.hour - startTime.hour);
