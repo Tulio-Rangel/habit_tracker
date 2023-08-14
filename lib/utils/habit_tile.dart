@@ -66,7 +66,11 @@ class HabitTile extends StatelessWidget {
                     child: Stack(
                       children: [
                         // Progress Cirlce
-                        CircularPercentIndicator(radius: 60),
+                        CircularPercentIndicator(
+                          radius: 60,
+                          percent: percentCompleted(),
+                          progressColor: Colors.green[400],
+                        ),
                         // Play-pause buttom
                         Center(
                             child: Icon(
