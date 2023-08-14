@@ -20,6 +20,24 @@ class HabitTile extends StatelessWidget {
       required this.timeGoal,
       required this.habitStarted});
 
+  // Convert second into min:sec -> e.g. 62 seconsed = 1:02 min
+  String formatToMinSec(int totalSeconds) {
+    String secs = (totalSeconds % 60).toString();
+    String mins = (totalSeconds / 60).toStringAsFixed(1);
+
+    // If secs is a 1 digit number, place 0 infront of it
+    if (secs.length == 1) {
+      secs = '0$secs';
+    }
+
+    // If mins is a 1 digit number
+    if (mins[1] == '.') {
+      mins = mins.substring(0, 1);
+    }
+
+    return '$mins:$secs';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -71,7 +89,7 @@ class HabitTile extends StatelessWidget {
 
                     // Progress
                     Text(
-                      '$timeSpent / $timeGoal',
+                      '${formatToMinSec(timeSpent)} / $timeGoal',
                       style: TextStyle(color: Colors.grey),
                     )
                   ],
